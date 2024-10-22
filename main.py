@@ -11,8 +11,11 @@ class MainWindow(QMainWindow):
         self.setGeometry(100, 100, 600, 400)
 
         layout = QVBoxLayout()
-
+        self.setStyleSheet("background-color: #262627;")
+        
         self.editor = QPlainTextEdit()
+        self.editor.setStyleSheet("background-color: #1e1e1f; color: #FFFFFF") 
+         
 
         fixedfont = QFontDatabase.systemFont(QFontDatabase.FixedFont)
         fixedfont.setPointSize(12)
@@ -30,6 +33,8 @@ class MainWindow(QMainWindow):
 
         # FILE MENU
         file_menu = self.menuBar().addMenu("&File")
+        file_menu.setStyleSheet("color: #FFFFFF;")
+        self.menuBar().setStyleSheet("color: #FFFFFF;")
 
         open_file_action = QAction("Open file", self)
         open_file_action.setStatusTip("Open file")
@@ -53,7 +58,8 @@ class MainWindow(QMainWindow):
     
         # EDIT MENU
         edit_menu = self.menuBar().addMenu("&Edit")
-    
+        edit_menu.setStyleSheet("color: #FFFFFF;")
+        
         undo_action = QAction("Undo", self)
         undo_action.setStatusTip("Undo last change")
         undo_action.triggered.connect(self.editor.undo)
@@ -87,6 +93,8 @@ class MainWindow(QMainWindow):
         
         # AI TOOLS
         ai_tools_menu = self.menuBar().addMenu("AI Tools")
+        ai_tools_menu.setStyleSheet("color: #FFFFFF;")
+        
         summ = QAction("Summarise", self)
         summ.setStatusTip("Save current page")
         summ.triggered.connect(self.summarise)
