@@ -10,7 +10,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.setGeometry(100, 100, 600, 400)
 
-        layout = QVBoxLayout()
+        layout = QFormLayout()
         self.setStyleSheet("background-color: #262627;")
         
         self.editor = QPlainTextEdit()
@@ -24,11 +24,7 @@ class MainWindow(QMainWindow):
 
         self.path = None
 
-        layout.addWidget(self.editor)
-
-        container = QWidget()
-        container.setLayout(layout)
-        self.setCentralWidget(container)
+        
 
 
         # FILE MENU
@@ -116,7 +112,39 @@ class MainWindow(QMainWindow):
         quitAction.triggered.connect(self.summarise)
         self.editor.addAction(quitAction)
         
+        self.btn_file_manager = QPushButton('Files', self)
+        self.btn_search = QPushButton('Search', self)
+        self.btn_time = QPushButton('Time', self)
+        self.btn_calendar = QPushButton('Calendar', self)
+        self.btn_inf = QPushButton('Info', self)
+        self.btn_settings = QPushButton('Settings', self)
+        self.btn_file_manager.setStyleSheet("color: #FFFFFF;")
+        self.btn_search.setStyleSheet("color: #FFFFFF;")
+        self.btn_time.setStyleSheet("color: #FFFFFF;")
+        self.btn_calendar.setStyleSheet("color: #FFFFFF;")
+        self.btn_inf.setStyleSheet("color: #FFFFFF;")
+        self.btn_settings.setStyleSheet("color: #FFFFFF;")
+
+        left_layout = QVBoxLayout()
+        left_layout.addWidget(self.btn_file_manager)
+        left_layout.addWidget(self.btn_search)
+        left_layout.addWidget(self.btn_time)
+        left_layout.addWidget(self.btn_calendar)
+        left_layout.addWidget(self.btn_inf)
+        left_layout.addWidget(self.btn_settings)
+        left_layout.addStretch(5)
+        left_layout.setSpacing(20)
+        left_widget = QWidget()
+        left_widget.setLayout(left_layout)
+
+
         # showing all the components
+
+        layout.addRow(left_widget, self.editor) 
+
+        container = QWidget()
+        container.setLayout(layout)
+        self.setCentralWidget(container)
         self.show()
 
 
